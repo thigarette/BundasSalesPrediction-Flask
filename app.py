@@ -69,4 +69,5 @@ def predict():
 
 
 if __name__ == '__main__':
+    app.secret_key = 'mysecret'
     app.run(threaded=True, port=5000)
