@@ -12,6 +12,7 @@ csrf = CSRFProtect(app)
 
 user_item_details = {}
 
+print('lol')
 class PredictionForm(FlaskForm):
     max_price = FloatField('Max Price', validators=[DataRequired])
     fat_content = SelectField('Fat Content',
@@ -68,7 +69,7 @@ def predict():
         sales_prediction = bundas.model_predict(encoded_item_details)
         pred = sales_prediction[0].astype(str)
         print(sales_prediction[0])
-        return "Sales Prediction is "+pred
+        return "<p>Sales Prediction is "+pred+"</p>"
     form = PredictionForm()
     return render_template('custom.html', form=form)
 
