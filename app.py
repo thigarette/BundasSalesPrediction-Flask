@@ -1,9 +1,14 @@
 from flask import Flask, render_template, request
 from flask_wtf import FlaskForm
+from flask_wtf.csrf import CSRFProtect
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, FloatField, SelectField
 from wtforms.validators import DataRequired
 import model as bundas
 app = Flask(__name__)
+
+app.config['SECRET_KEY'] = 'mysecret'
+
+csrf = CSRFProtect(app)
 
 user_item_details = {}
 
