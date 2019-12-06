@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <h1>Bundas Sales Prediction</h1>
+    <form action="/" method="post">
+        <p>
+            {{ form.max_price.label }}<br>
+            {{ form.max_price(size=32) }}
+        </p>
+        <p>
+            {{ form.fat_content.label }}<br>
+            {{ form.fat_content }}
+        </p>
+        <p>
+            {{ form.visibility.label }}<br>
+            {{ form.visibility(size=32) }}
+        </p>
+        <p>
+            {{ form.category.label }}<br>
+            {{ form.category }}
+        </p>
+        <p>
+            {{ form.store_size.label }}<br>
+            {{ form.store_size }}
+        </p>
+        <p>
+            {{ form.store_location_type.label }}<br>
+            {{ form.store_location_type }}
+        </p>
+        <p>
+            {{ form.store_type.label }}<br>
+            {{ form.store_type }}
+        </p>
+
+        <p>{{ form.submit() }}</p>
+        <script
+			  src="https://code.jquery.com/jquery-3.4.1.min.js"
+			  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+			  crossorigin="anonymous">
+        </script>
+        <script>
+        function makePred(){
+            let category = document.getElementById("category");
+            let item = {
+                "max_price": document.getElementById("max_price").value,
+                "category": category.options[category.selectedIndex].value,
+            };
+            console.log('onclick is working');
+            $.ajax({
+                url: "http://127.0.0.1:5000/",
+                type: 'post',
+                dataType: 'json',
+                contentType: "application/json",
+                data: JSON.stringify(item)
+            }).done(function() {
+             alert('finished python script');
+            });
+        }
+    </script>
+    </form>
+</div>
+</body>
+</html>
