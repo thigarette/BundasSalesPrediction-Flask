@@ -40,16 +40,16 @@ class PredictionForm(FlaskForm):
     store_location_type = SelectField('Store Location Type',
                                       choices=[('Tier 1', 'Tier 1'), ('Tier 2', 'Tier 2'), ('Tier 3', 'Tier 3')])
     store_type = SelectField('Store Type',
-                             choices=[('Supermarket Type 1', 'Supermarket Type 1'), ('Supermarket Type 2', 'Supermarket Type 2'), ('Supermarket Type 3', 'Supermarket Type 3'), ('Grocery Store', 'Grocery Store')])
+                             choices=[('Supermarket Type1', 'Supermarket Type1'), ('Supermarket Type2', 'Supermarket Type2'), ('Supermarket Type3', 'Supermarket Type3'), ('Grocery Store', 'Grocery Store')])
     submit = SubmitField('Make Prediction')
 
 
 @app.route('/', methods=['GET', 'POST'])
 def predict():
     if request.method == 'POST':
-        max_price = request.form["max_price"]
+        max_price = float(request.form["max_price"])
         fat_content = request.form["fat_content"]
-        visibility = request.form["visibility"]
+        visibility = float(request.form["visibility"])
         category = request.form["category"]
         store_size = request.form["store_size"]
         store_location_type = request.form["store_location_type"]
@@ -66,10 +66,11 @@ def predict():
         }
         # user_item_details.extend([visibility, max_price, fat_content, category, store_size, store_location_type, store_type])
         encoded_item_details = bundas.preprocess_input(user_item_details)
+        print(encoded_item_details)
         sales_prediction = bundas.model_predict(encoded_item_details)
         pred = sales_prediction[0].astype(str)
         print(sales_prediction[0])
-        return "<p>Sales Prediction is "+pred+"</p>"
+        return "<h1>Sales Prediction is "+pred+"</h1>"
     form = PredictionForm()
     return render_template('custom.html', form=form)
 

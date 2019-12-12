@@ -33,6 +33,10 @@ def preprocess_input(user_item_details):
     data = pd.DataFrame(user_item_details)
     encoded_data = pd.get_dummies(data)
     missing_cols = set(X_train_final.columns) - set(encoded_data.columns)
+    print(data.dtypes)
+    print(X_train_final.columns)
+    print(encoded_data.columns)
+    print(missing_cols)
 
     for column in missing_cols:
         encoded_data[column] = 0
