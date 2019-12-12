@@ -38,9 +38,9 @@ class PredictionForm(FlaskForm):
     store_size = SelectField('Store Size',
                              choices=[('Small', 'Small'), ('Medium', 'Medium'), ('High', 'High'), ('Unknown', 'Unknown')])
     store_location_type = SelectField('Store Location Type',
-                                      choices=[('Tier 1', 'Tier 1'), ('Tier 2', 'Tier 2'), ('Tier 3', 'Tier 3'), ('Grocery Store', 'Grocery Store')])
+                                      choices=[('Tier 1', 'Tier 1'), ('Tier 2', 'Tier 2'), ('Tier 3', 'Tier 3')])
     store_type = SelectField('Store Type',
-                             choices=[('Type1', 'Type1'), ('Type2', 'Type2'), ('Type3', 'Type3')])
+                             choices=[('Supermarket Type 1', 'Supermarket Type 1'), ('Supermarket Type 2', 'Supermarket Type 2'), ('Supermarket Type 3', 'Supermarket Type 3'), ('Grocery Store', 'Grocery Store')])
     submit = SubmitField('Make Prediction')
 
 
